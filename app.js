@@ -1,15 +1,14 @@
-// var userName = prompt("Give me username");
-// var welcomeMessage = "Welcome to Banana " + userName;
-// alert(welcomeMessage);
-
 var btnTranslate = document.querySelector("#btn-translate");
 var txtInput = document.querySelector("#txt-input");
 var outputDiv = document.querySelector("#output");
 
-var serverURL = "https://lessonfourapi.aayushjaincode.repl.co/translate/yoda.json";
+// var serverURL = "https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json"
+
+var serverURL = "https://api.funtranslations.com/translate/minion.json"
+
 
 function getTranslationURL(input) {
-	return serverURL + "?" + "text=" + input;
+	return serverURL + "?" + "text=" + input
 }
 
 function errorHandler(error) {
@@ -19,15 +18,16 @@ function errorHandler(error) {
 
 
 function clickHandler() {
-	var inputtxt = txtInput.value;
+	var inputText = txtInput.value; // taking input
 
-	fetch(getTranslationURL(inputtxt))
+	// calling server for processing
+	fetch(getTranslationURL(inputText))
 		.then(response => response.json())
 		.then(json => {
 			var translatedText = json.contents.translated;
-			outputDiv.innerHTML = translatedText;
+			outputDiv.innerText = translatedText; // output
 		})
 		.catch(errorHandler)
-}
+};
 
-btnTranslate.addEventListener("click", clickHandler);
+btnTranslate.addEventListener("click", clickHandler)
